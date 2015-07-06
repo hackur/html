@@ -504,13 +504,13 @@ class FormBuilder {
 	 */
 	public function selectYear($name, $begin, $end, $selected = "", $options = array())
 	{
-		$range = array_combine($range = range($begin, $end), $range);
+        $range = array_combine( $range = range( $begin, $end ), $range );
 
-		$range[''] = 'Select Year';
-		
-		return $this->select($name, $range, $selected, $options);
-		
-		//return call_user_func_array(array($this, 'selectRange'), func_get_args());
+        $range       = array_reverse( $range, true );
+        $range[ '' ] = 'Select Year';
+        $range       = array_reverse( $range, true );
+
+        return $this->select( $name, $range, $selected, $options );
 	}
 
 	/**
