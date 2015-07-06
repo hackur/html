@@ -502,9 +502,15 @@ class FormBuilder {
 	 * @param  array   $options
 	 * @return string
 	 */
-	public function selectYear()
+	public function selectYear($name, $begin, $end, $selected = "", $options = array())
 	{
-		return call_user_func_array(array($this, 'selectRange'), func_get_args());
+		$range = array_combine($range = range($begin, $end), $range);
+
+		$range[''] = 'Select Year';
+		
+		return $this->select($name, $range, $selected, $options);
+		
+		//return call_user_func_array(array($this, 'selectRange'), func_get_args());
 	}
 
 	/**
@@ -516,9 +522,11 @@ class FormBuilder {
 	 * @param  string  $format
 	 * @return string
 	 */
-	public function selectMonth($name, $selected = null, $options = array(), $format = '%B')
+	public function selectMonth($name, $selected = "", $options = array(), $format = '%B')
 	{
 		$months = array();
+		
+		$months[''] = 'Select Month';
 
 		foreach (range(1, 12) as $month)
 		{
